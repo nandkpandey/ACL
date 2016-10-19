@@ -11,12 +11,16 @@
   <groupId>com.in.nand.acl</groupId>
   <artifactId>acl-framework</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
   <name>acl-framework </name>
   <url>http://maven.apache.org</url>
   <dependencies>
  
-         
+         <dependency>
+            <groupId>com.in.nand.acl</groupId>
+            <artifactId>acl-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
           <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
