@@ -1,15 +1,15 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.in.nand.acl</groupId>
-  <artifactId>acl</artifactId>
-  <packaging>pom</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>acl Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  
-      <properties>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.in.nand.acl</groupId>
+    <artifactId>acl</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>acl</name>
+    <description>acl</description>
+
+    <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.7</java.version>
         <org.springframework.boot.version>1.2.2.RELEASE</org.springframework.boot.version>
@@ -26,7 +26,7 @@
         <com.fasterxml.jackson.core.version>2.4.5</com.fasterxml.jackson.core.version>
         <joda-time.version>2.8.1</joda-time.version>
 		
-      <eu.medsea.mimeutil.version>2.1.3</eu.medsea.mimeutil.version>
+       <eu.medsea.mimeutil.version>2.1.3</eu.medsea.mimeutil.version>
  
         <!-- Logger -->
         <slf4j.version>1.7.10</slf4j.version>
@@ -179,11 +179,77 @@
             <artifactId>junit</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <!-- Apache maven plugins -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${org.apache.maven.plugins.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
   
-  <build>
-    <finalName>acl</finalName>
-  </build>
-  <modules>
-  	<module>acl-core</module>
-  </modules>
+  <!-- <modules>
+         <module>user-core</module>
+        <module>user-framework</module>
+        <module>user-interface</module>
+        <module>user-service</module>
+        <module>user-persistence</module>
+    </modules>
+-->
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/prod/resources</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+        <profile>
+            <id>stg</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/stg/resources</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/dev/resources</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
+    <modules>
+    	<module>acl-core</module>
+    	<module>acl-framework</module>
+    	<module>acl-persistence</module>
+    	<module>acl-services</module>
+    	<module>acl-interface</module>
+    </modules>
 </project>
